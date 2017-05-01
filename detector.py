@@ -6,7 +6,7 @@ video = cv2.VideoCapture(0)
 cv2.namedWindow("Modified")
 cv2.namedWindow("Original")
 
-# Also just super janky
+# skin color thresholds
 lower = numpy.array([0, 48, 80], dtype = "uint8")
 upper = numpy.array([20, 255, 255], dtype = "uint8")
 
@@ -82,14 +82,14 @@ while(video.isOpened()):
         dist_far_hull = cv2.pointPolygonTest(hull, far, True)
         dist_far_center = math.hypot(center[0] - far[0], center[1] - far[1])
         far_inside_hull = cv2.pointPolygonTest(hull, far, False)
-        # 20...what a janky ass piece of mutha fuckin shit.
+        # 20... a janky approximation...
         if dist_far_hull > 20:
             fingers += 1
         cv2.circle(drawing, far, 5, [0,0,255], -1)
 
-    # -1 is also just so fuckin JANKY
+    # -1 not great work around for defects count
     finger_string = "FINGERS :: {}".format(fingers - 1)
-    # This is what the computer s
+    # This is what the computer sees
     cv2.imshow("Modified", drawing)
     # This is the actual image
     cv2.putText(image, finger_string, (50,100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0,255,0), 4);
