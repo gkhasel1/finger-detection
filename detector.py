@@ -90,6 +90,7 @@ while(video.isOpened()):
     # -1 not great work around for defects count
     finger_string = "FINGERS :: {}".format(fingers - 1)
     # This is what the computer sees
+    cv2.putText(drawing, finger_string, (50,100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0,255,0), 4);
     cv2.imshow("Modified", drawing)
     # This is the actual image
     cv2.putText(image, finger_string, (50,100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0,255,0), 4);
